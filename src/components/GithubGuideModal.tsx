@@ -10,7 +10,7 @@ interface GithubGuideModalProps {
 }
 
 export const GithubGuideModal: React.FC<GithubGuideModalProps> = ({ isOpen, onClose }) => {
-  const [username, setUsername] = useState('patelramlala414');
+  const [username, setUsername] = useState('ramlalapatel');
   const [copiedCmd, setCopiedCmd] = useState<string | null>(null);
 
   if (!isOpen) return null;
