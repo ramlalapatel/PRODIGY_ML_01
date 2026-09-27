@@ -1,0 +1,7 @@
+{
+  "name": "PRODIGY_ML_01: House Price Linear Regression",
+  "description": "Machine learning linear regression model and interactive engineering workbench predicting house sale prices using square footage, bedrooms, and bathrooms.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
