@@ -8,11 +8,13 @@ import { RegressionVisualizer } from './components/RegressionVisualizer';
 import { DatasetViewer } from './components/DatasetViewer';
 import { CodeViewer } from './components/CodeViewer';
 import { DocumentationViewer } from './components/DocumentationViewer';
+import { GithubGuideModal } from './components/GithubGuideModal';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('overview');
   const [records, setRecords] = useState<HouseRecord[]>(SAMPLE_TRAIN_DATA);
   const [isCustomLoaded, setIsCustomLoaded] = useState<boolean>(false);
+  const [isGithubModalOpen, setIsGithubModalOpen] = useState<boolean>(false);
 
   // Run regression pipeline on current records
   const regressionResult = useMemo(() => {
@@ -33,7 +35,11 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans antialiased">
-      <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Header
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        onOpenGithubModal={() => setIsGithubModalOpen(true)}
+      />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {activeTab === 'overview' && (
@@ -65,6 +71,11 @@ export default function App() {
 
         {activeTab === 'readme' && <DocumentationViewer />}
       </main>
+
+      <GithubGuideModal
+        isOpen={isGithubModalOpen}
+        onClose={() => setIsGithubModalOpen(false)}
+      />
 
       <footer className="border-t border-slate-900 py-6 px-6 text-center text-xs text-slate-500">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">

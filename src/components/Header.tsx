@@ -1,14 +1,15 @@
-import React from 'react';
-import { Download, Code2, Play } from 'lucide-react';
+import React, { useState } from 'react';
+import { Download, Code2, Play, GitBranch } from 'lucide-react';
 import { PYTHON_SCRIPT_CODE } from '../data/pythonCode';
 import { downloadTextFile } from '../utils/fileDownloader';
 
 interface HeaderProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
+  onOpenGithubModal?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
+export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onOpenGithubModal }) => {
   const navItems = [
     { id: 'overview', label: 'Model Overview' },
     { id: 'sandbox', label: 'Live Predictor' },
@@ -68,11 +69,12 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
         {/* Zone 3: 1-2 primary actions */}
         <div className="flex items-center gap-2.5">
           <button
-            onClick={() => setActiveTab('sandbox')}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg transition-colors cursor-pointer whitespace-nowrap"
+            onClick={onOpenGithubModal}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg transition-colors cursor-pointer whitespace-nowrap"
+            title="GitHub Setup & Push Guide"
           >
-            <Play className="w-3.5 h-3.5 text-indigo-400" />
-            <span>Test Prediction</span>
+            <GitBranch className="w-3.5 h-3.5 text-indigo-400" />
+            <span>GitHub Guide</span>
           </button>
           <button
             onClick={handleDownloadScript}
@@ -87,3 +89,4 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
     </header>
   );
 };
+
